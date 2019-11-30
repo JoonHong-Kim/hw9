@@ -11,6 +11,7 @@ using namespace std;
 
 LinkedGraph::LinkedGraph(int number) :n(number) {
 	list = new AdjList[n];
+	for (int i = 0; i < n; i++)list[i].first = 0;
 	check = new bool[n];
 	fill(check, check + n, false);
 	distance = new int[n];
@@ -29,7 +30,7 @@ void LinkedGraph::linkEdge(Key k1, Key k2, int weight) { //꼭지점과 꼭지점을 이�
 
 	newNode = new ChainNode(k1, weight);
 	newNode->link = list[k2.index].first; //k1다음을 k2로
-
+	list[k2.index].first = newNode;
 }
 void LinkedGraph::dijkstra(int start, int end) {
 
@@ -39,8 +40,8 @@ void LinkedGraph::dijkstra(int start, int end) {
 	int index = start;
 
 	for (int i = 0; i < n - 1; i++) {
-
-		for (ChainNode* node = list[index].first->link;
+		
+		for (ChainNode* node = list[index].first;
 			node != 0; node = node->link) {
 			if (distance[node->data.index] > distance[index] + node->weight) { //update 될 경우에 경로 저장+ update
 				path[node->data.index] = index;

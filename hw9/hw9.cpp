@@ -10,7 +10,6 @@ int main(int argc, char* argv[])
 	int numLine;
 	int numStation;
 	int line1, line2;
-	int index = 0;
 	string src, dst;
 	//ChainNode* station;
 	//station = new ChainNode[MAX_S];
@@ -18,6 +17,7 @@ int main(int argc, char* argv[])
 	int* countLine;
 	int countEdge;
 	int total = 0;
+	string insertName;
 	if (argc != 3)
 	{
 		cerr << "Argument Count is " << argc << endl << "Argument must be " << argc << endl;
@@ -29,18 +29,19 @@ int main(int argc, char* argv[])
 		cerr << argv[1] << " open failed" << endl;
 		return 1;
 	}
-	fin >> numStation;
-	countLine = new int[numStation];
-	fill(countLine, countLine + numStation, 0);
+	fin >> numLine;
+	countLine = new int[numLine];
+	fill(countLine, countLine + numLine, 0);
 	int k = 0;
-	for (int i = 0; i < numStation; i++) {// 호선수만큼 반복 i 는 호선수
+	for (int i = 0; i < numLine; i++) {// 호선수만큼 반복 i 는 호선수
 		countLine[i] = k;
 		fin >> numStation;//호선에 몇개역 있는지 받기
 		k += numStation;
-		for (int j = 0; i < numStation; j++, index++) { //한 호선의 개수 만큼 반복
+		for (int j = 0; j < numStation; j++) { //한 호선의 개수 만큼 반복
 			station[total].line = i + 1;
 			station[total].index = total;
-			fin >> station[total].name;
+			fin >> insertName;
+			station[total].name = insertName;
 			total++;
 		}
 	}

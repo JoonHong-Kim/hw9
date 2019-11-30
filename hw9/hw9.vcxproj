@@ -129,6 +129,12 @@
     <ClCompile Include="hw9.cpp" />
     <ClCompile Include="subway.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\..\Downloads\hw9&amp;#4361%3b&amp;#4462%3b&amp;#4364%3b&amp;#4453%3b&amp;#4540%3b\input1.txt" />
+    <Text Include="..\..\..\..\Downloads\hw9&amp;#4361%3b&amp;#4462%3b&amp;#4364%3b&amp;#4453%3b&amp;#4540%3b\input2.txt" />
+    <Text Include="..\..\..\..\Downloads\hw9&amp;#4361%3b&amp;#4462%3b&amp;#4364%3b&amp;#4453%3b&amp;#4540%3b\stations1.txt" />
+    <Text Include="..\..\..\..\Downloads\hw9&amp;#4361%3b&amp;#4462%3b&amp;#4364%3b&amp;#4453%3b&amp;#4540%3b\stations2.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

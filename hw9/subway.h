@@ -24,10 +24,9 @@ public:
 
 class AdjList {
 	ChainNode* first;
-	int weight;
 	friend class LinkedGraph;
 public:
-
+	//AdjList();
 };
 
 class LinkedGraph {
