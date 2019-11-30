@@ -35,6 +35,7 @@ void LinkedGraph::linkEdge(Key k1, Key k2, int weight) { //꼭지점과 꼭지점을 이�
 void LinkedGraph::dijkstra(int start, int end,Key station[]) {
 
 	int* path = new int[n];
+	fill(path, path + n, 0);
 	distance[start] = 0;
 	fill(check, check + n, false);
 	int index = start;
@@ -50,18 +51,18 @@ void LinkedGraph::dijkstra(int start, int end,Key station[]) {
 		}
 		int min = INF;
 		int minIndex;
+		check[index] = true;
 		for (int k = 0; k < n; k++) {
 			if (!check[k] && min > distance[k]) {
 				minIndex = k;
 				min = distance[k];
 			}
 		}
-		check[index] = true;
 		index = minIndex;
 
 	}
 	stack<Key> pa;
-	cout <<station[start].name<< "(line" << station[start].line << ")";
+	cout << station[start].name << "(line" << station[start].line << ")";
 	for (int i = end; i != start; i = path[i]) {
 		pa.push(station[i]);
 	}
@@ -69,6 +70,7 @@ void LinkedGraph::dijkstra(int start, int end,Key station[]) {
 		cout <<" -> "<<pa.top().name << "(line" << pa.top().line << ")";
 		pa.pop();
 	}
+	
 	int minute = distance[end] / 60;
 	float second = distance[end] % 60;
 	if (second == 0) {
