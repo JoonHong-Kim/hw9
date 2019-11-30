@@ -13,7 +13,8 @@ int main(int argc, char* argv[])
 	string src, dst;
 	//ChainNode* station;
 	//station = new ChainNode[MAX_S];
-	Key station[MAX_S];
+	Key* station;
+	station = new Key[MAX_S];
 	int* countLine;
 	int countEdge;
 	int total = 0;
@@ -100,7 +101,7 @@ int main(int argc, char* argv[])
 			break;
 		}
 	}
-	subway.dijkstra(startIndex, endIndex,station);
+	subway.dijkstra(startIndex, endIndex, station);
 
 
 }

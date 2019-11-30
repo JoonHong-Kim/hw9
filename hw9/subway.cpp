@@ -32,26 +32,20 @@ void LinkedGraph::linkEdge(Key k1, Key k2, int weight) { //꼭지점과 꼭지점을 이�
 	newNode->link = list[k2.index].first; //k1다음을 k2로
 	list[k2.index].first = newNode;
 }
-void LinkedGraph::dijkstra(int start, int end,Key station[]) {
+void LinkedGraph::dijkstra(int start, int end, Key station[]) {
 
 	int* path = new int[n];
-	fill(path, path + n, 0);
+	fill(path, path + n, start);
 	distance[start] = 0;
 	fill(check, check + n, false);
-	int index = start;
+	int index;
+	int minIndex;
+	ChainNode* node;
 
 	for (int i = 0; i < n - 1; i++) {
-		
-		for (ChainNode* node = list[index].first;
-			node != 0; node = node->link) {
-			if (distance[node->data.index] > distance[index] + node->weight) { //update 될 경우에 경로 저장+ update
-				path[node->data.index] = index;
-				distance[node->data.index] = distance[index] + node->weight;
-			}
-		}
 		int min = INF;
-		int minIndex;
-		check[index] = true;
+	
+		
 		for (int k = 0; k < n; k++) {
 			if (!check[k] && min > distance[k]) {
 				minIndex = k;
@@ -59,24 +53,36 @@ void LinkedGraph::dijkstra(int start, int end,Key station[]) {
 			}
 		}
 		index = minIndex;
+		check[index] = true;
+		
+		
+		node = list[index].first;
+		for (ChainNode* node = list[index].first;
+			node != 0 ; node = node->link){
+			if (!check[node->data.index]) {
+				if (distance[node->data.index] > distance[index] + node->weight) { //update 될 경우에 경로 저장+ update
+					path[node->data.index] = index;
+					distance[node->data.index] = distance[index] + node->weight;
+				}
+			}
+		}
 
 	}
+
 	stack<Key> pa;
 	cout << station[start].name << "(line" << station[start].line << ")";
 	for (int i = end; i != start; i = path[i]) {
 		pa.push(station[i]);
 	}
 	for (; !pa.empty();) {
-		cout <<" -> "<<pa.top().name << "(line" << pa.top().line << ")";
+		cout << " -> " << pa.top().name << "(line" << pa.top().line << ")";
 		pa.pop();
 	}
+
+	float minute = distance[end] / 60;
+
 	
-	int minute = distance[end] / 60;
-	float second = distance[end] % 60;
-	if (second == 0) {
-		cout << "\n" << "소요시간 :" << minute << "분";
-	}
-	else {
-		cout << "\n" << "소요시간 :" << minute << "분 " << second << "초";
-	}
+	cout << "\n" << "소요시간 :" << minute << "minutes" << endl;
+
+
 }

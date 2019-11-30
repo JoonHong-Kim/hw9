@@ -38,9 +38,5 @@ public:
 	~LinkedGraph();
 	LinkedGraph(int);
 	void linkEdge(Key, Key, int);
-	void dijkstra(int, int,Key []);
-};
-
-struct Result {
-
+	void dijkstra(int, int, Key[]);
 };
