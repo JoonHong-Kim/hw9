@@ -32,7 +32,7 @@ void LinkedGraph::linkEdge(Key k1, Key k2, int weight) { //꼭지점과 꼭지점을 이�
 	newNode->link = list[k2.index].first; //k1다음을 k2로
 	list[k2.index].first = newNode;
 }
-void LinkedGraph::dijkstra(int start, int end) {
+void LinkedGraph::dijkstra(int start, int end,Key station[]) {
 
 	int* path = new int[n];
 	distance[start] = 0;
@@ -61,18 +61,20 @@ void LinkedGraph::dijkstra(int start, int end) {
 
 	}
 	stack<Key> pa;
-	cout << list[end].first->data.name << "(line" << list[end].first->data.line << ")";
+	cout <<station[start].name<< "(line" << station[start].line << ")";
 	for (int i = end; i != start; i = path[i]) {
-		string station = list[i].first->data.name;
-		int line = list[i].first->data.line;
-		cout << " ->" << station << "(line" << line << ")";
+		pa.push(station[i]);
+	}
+	for (; !pa.empty();) {
+		cout <<" -> "<<pa.top().name << "(line" << pa.top().line << ")";
+		pa.pop();
 	}
 	int minute = distance[end] / 60;
 	float second = distance[end] % 60;
 	if (second == 0) {
-		cout << "소요시간 :" << minute << "분";
+		cout << "\n" << "소요시간 :" << minute << "분";
 	}
 	else {
-		cout << "소요시간 :" << minute << "분 " << second << "초";
+		cout << "\n" << "소요시간 :" << minute << "분 " << second << "초";
 	}
 }

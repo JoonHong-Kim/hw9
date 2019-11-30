@@ -72,6 +72,7 @@ int main(int argc, char* argv[])
 	}
 	fin.close();
 
+
 	fstream fin2(argv[2]);
 	if (!fin2)
 	{
@@ -99,7 +100,7 @@ int main(int argc, char* argv[])
 			break;
 		}
 	}
-	subway.dijkstra(startIndex, endIndex);
-	return 0;
+	subway.dijkstra(startIndex, endIndex,station);
+
 
 }

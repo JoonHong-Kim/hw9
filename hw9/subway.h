@@ -26,7 +26,6 @@ class AdjList {
 	ChainNode* first;
 	friend class LinkedGraph;
 public:
-	//AdjList();
 };
 
 class LinkedGraph {
@@ -39,5 +38,9 @@ public:
 	~LinkedGraph();
 	LinkedGraph(int);
 	void linkEdge(Key, Key, int);
-	void dijkstra(int, int);
+	void dijkstra(int, int,Key []);
+};
+
+struct Result {
+
 };
