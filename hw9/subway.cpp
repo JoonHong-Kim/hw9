@@ -1,8 +1,5 @@
 #include<iostream>
 #include<string>
-#include<cstdio>
-#include<algorithm>
-#include<math.h>
 #include<stack>
 #include"subway.h"
 
